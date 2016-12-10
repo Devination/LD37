@@ -48,7 +48,7 @@ class Project {
 		napeDebugDraw = new NapeDebugDraw(space);
 
 		var floor = new Body(BodyType.STATIC);
-		floor.shapes.add(new Polygon(Polygon.rect(width / 2 - 200, height / 2, 400, 100)));
+		floor.shapes.add(new Polygon(Polygon.rect(width / 2 - 256, height / 2, 512, 100)));
 		floor.space = space;
 
 		for (i in 0...16) {
@@ -60,7 +60,12 @@ class Project {
 
 		ball = new Body(BodyType.DYNAMIC);
 		ball.shapes.add(new Circle(50));
-		ball.position.setxy(width / 2 - 100, height / 2);
+		var offset = Vec2.get(50, 50);
+		ball.shapes.add(new Polygon(Polygon.box(16, 50)).translate(offset));
+		offset.x = -50;
+		ball.shapes.add(new Polygon(Polygon.box(16, 50)).translate(offset));
+		offset.dispose();
+		ball.position.setxy(width / 2 - 128, height / 2);
 		// ball.angularVel = 10;
 		ball.space = space;
 
